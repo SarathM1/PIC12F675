@@ -45,6 +45,8 @@ void timer_init()
 
 void main(void) {
     TRISIO0 = 0;
+    ANSEL = 0X00;
+    CMCON = 0X07;
     timer_init();
     while(1);
     return;
