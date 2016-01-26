@@ -21,6 +21,13 @@
 #define LED GPIO1
 void interrupt ISR()
 {
+    if(TMR1IF)
+    {
+        LED = ~LED;
+        TMR1H = 0xFC;
+        TMR1L = 0x18;
+        TMR1IF = 0;
+    }
 }
 
 void timer_init()
@@ -30,11 +37,14 @@ void timer_init()
     TMR1IE = 1;
     
     TMR1IF = 0;
-    
+    TMR1H = 0XFC;
+    TMR1L = 0X18;
+    TMR1ON = 1;
 }
 
 
 void main(void) {
-
+    TRISIO1 = 0;
+    timer_init();
     return;
 }
