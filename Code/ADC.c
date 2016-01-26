@@ -20,44 +20,27 @@
 void ADC_init()
 {
 	ANSEL   = 0xA1;	     // Clear Pin selection bits
-	TRISIO1  = 0;      // GP3 input, rest all output
+	
+    TRISIO1  = 0;      // GP3 input, rest all output
 	TRISIO0 = 1;	 // Make selected channel pins input
-	ADCON0 = 0x81;		 // Turn on the A/D Converter
-	CMCON  = 0x07;		 // Shut off the Comparator, so that pins are available for ADC
-	VRCON  = 0x00;	     // Shut off the Voltage Reference for Comparator
+	
+    ADFM = 1;
+    ADON = 1;
 }
 
-
-/*
- * Function Name: GetADCValue
- * Input(s) :     Channel name, it can be AN0, AN1, AN2 or AN3 only.
- *                Channel is selected according to the pin you want to use in
- *                the ADC conversion. For example, use AN0 for GP0 pin.
- *				  Similarly for GP1 pin use AN1 etc.
- * Output(s):     10 bit ADC value is read from the pin and returned.
- * Author:        M.Saeed Yasin   20-06-12
- */
-unsigned int ADC_get()
+int ADC_get()
 {
-    ADRESH=0x00;
-    ADRESL=0x00;
-    ADCON0 = 0x81;
-    __delay_us(25);
-    
     GO_nDONE = 1;                //Initializes A/D conversion
     while(GO_nDONE);             //Waiting for conversion to complete
-    
     return (ADRESH<<8)+ADRESL;
 }
 void main(void) 
 {
-    GPIO=0x00;
-    LED = 0;
     ADC_init();
     
     while(1)
     {
-        __delay_ms(500);
+        __delay_ms(10);
         if( ADC_get() == 1023 )
         {
             LED = 1;
