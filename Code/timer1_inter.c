@@ -19,14 +19,22 @@
 
 #define _XTAL_FREQ 4000000
 #define LED GPIO0
+
+int cntr = 1;
 void interrupt ISR()
 {
     if(TMR1IF)
     {
-        LED = ~LED;
+        cntr++;
         TMR1H = 0xFC;
         TMR1L = 0x18;
         TMR1IF = 0;
+        
+        if(cntr == 1000)
+        {
+            cntr = 0;
+            LED = ~LED;
+        }
     }
 }
 
