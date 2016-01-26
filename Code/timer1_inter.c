@@ -18,7 +18,7 @@
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
 
 #define _XTAL_FREQ 4000000
-#define LED GPIO1
+#define LED GPIO0
 void interrupt ISR()
 {
     if(TMR1IF)
@@ -44,7 +44,8 @@ void timer_init()
 
 
 void main(void) {
-    TRISIO1 = 0;
+    TRISIO0 = 0;
     timer_init();
+    while(1);
     return;
 }
