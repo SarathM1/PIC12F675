@@ -41,8 +41,6 @@ void main(void) {
     
     ANSEL = 0x00;
     CMCON = 0x07;
-    //ADCON0 = 0x00;
-    //VRCON = 0x00;
     inter_init();
     while(1);
 }
