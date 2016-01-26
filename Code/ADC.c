@@ -58,13 +58,13 @@ void main(void)
     while(1)
     {
         __delay_ms(500);
-        if(ADC_get())
+        if( ADC_get() == 1023 )
         {
-            LED = 0;
+            LED = 1;
         }
         else
         {
-            LED = 1;
+            LED = 0;
         }
         
     }
