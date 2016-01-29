@@ -10,4 +10,4 @@ ftmr = fclk/4
 
 fout = ftmr/(65535-tmr1)
 tout = 1.0/fout
-print fout,'hz or',tout*1000,'ms'
+print fout,'hz or',round(tout*1000,2),'ms'

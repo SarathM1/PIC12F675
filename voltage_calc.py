@@ -16,4 +16,4 @@ except Exception, e:
 	print t,alpha,x,y,z
 	print e
 else:
-	print round(vrms),"volt"
+	print round(vrms,2),"volt"
