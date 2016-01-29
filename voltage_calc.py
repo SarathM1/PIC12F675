@@ -1,6 +1,6 @@
 from math import sin,pi,sqrt,fabs
 
-t = 2					# Give time in ms
+t = 10					# Give time in ms
 alpha = pi*t
 alpha = alpha /10
 
@@ -16,4 +16,4 @@ except Exception, e:
 	print t,alpha,x,y,z
 	print e
 else:
-	print vrms
+	print round(vrms),"volt"
